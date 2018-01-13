@@ -3,11 +3,25 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
 
 commonConfig = {
+  /*入口*/
+  // entry: path.join(__dirname, 'src/index.js'),
   entry: {
     app: [
+      'babel-polyfill',
+      // 'react-hot-loader/patch',
       path.join(__dirname, 'src/index.js')
     ],
-    vendor: ['react', 'react-router-dom', 'redux', 'react-dom', 'react-redux']
+    vendor: [
+      'react',
+      'react-router-dom',
+      'redux', 'react-dom',
+      'react-redux',
+      'immutable',
+      'redux-immutable',
+      'reselect',
+      'whatwg-fetch',
+      'redux-thunk'
+    ]
   },
   output: {
     path: path.join(__dirname, './dist'),
@@ -41,7 +55,12 @@ commonConfig = {
     }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'runtime'
-    })
+    }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+      },
+    }),
   ],
   
   resolve: {
@@ -49,8 +68,8 @@ commonConfig = {
       pages: path.join(__dirname, 'src/pages'),
       components: path.join(__dirname, 'src/components'),
       router: path.join(__dirname, 'src/router'),
-      actions: path.join(__dirname, 'src/redux/actions'),
-      reducers: path.join(__dirname, 'src/redux/reducers')
+      actions: path.join(__dirname, 'src/myredux/actions'),
+      reducers: path.join(__dirname, 'src/myredux/reducers')
     }
   }
 };

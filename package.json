@@ -6,9 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev-build": "rm -rf dist && webpack --config webpack.dev.config.js",
-    "build": "webpack --config webpack.config.js",
-    "start": "webpack-dev-server --config webpack.dev.config.js",
-    "dev": "webpack-dev-server --config webpack.dev.config.js --color --progress --hot",
+    "build": "cross-env NODE_ENV=production webpack --config webpack.config.js",
+    "start": "cross-env NODE_ENV=development webpack-dev-server --config webpack.dev.config.js",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --config webpack.dev.config.js --color --progress --hot",
     "mock": "json-server mock/mock.js --watch --port 8090",
     "mockdev": "yarn run mock && yarn start"
   },
@@ -44,6 +44,8 @@
   },
   "dependencies": {
     "axios": "^0.17.1",
+    "cross-env": "^5.1.3",
+    "draft-js": "^0.10.4",
     "immutable": "^3.8.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
