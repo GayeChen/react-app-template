@@ -12,6 +12,7 @@ module.exports = merge({
     return undefined;
   }
 })(baseConfig, {
+  mode: 'development',
   devtool: 'inline-source-map',
   /*入口*/
   // entry: path.join(__dirname, 'src/index.js'),
